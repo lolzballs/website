@@ -35,13 +35,11 @@ section {
     background-color: #009688;
     color: #FFFFFF;
     text-align: center;
-    min-height: 40%;
 }
 #projects {
     padding-top: 50px;
     padding-bottom: 50px;
     color: #212121;
-    min-height: 60%;
 }
 #footer {
     position: absolute;
