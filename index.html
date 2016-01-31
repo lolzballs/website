@@ -1,62 +1,52 @@
 <!DOCTYPE html>
-<html ng-app="app">
-    <head>
-        <meta charset="utf-8">
-        <title>Benjamin Cheng</title>
-        <link rel="stylesheet" href="main.css" charset="utf-8">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-        <link href='https://fonts.googleapis.com/css?family=Lato|Roboto|Montserrat' rel='stylesheet' type='text/css'>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js" charset="utf-8"></script>
-    </head>
-    <body>
-        <div id="nav">
-            <div class="container" id="menu-items">
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <span class="dot">&middot;</span>
-                    <li><a href="#">What I Do</a></li>
-                    <span class="dot">&middot;</span>
-                    <li><a href="#">My Work</a></li>
-                    <span class="dot">&middot;</span>
-                    <li><a href="#">Contact Me</a></li>
-                    <li class="pull-right"><a href="#">Blog</a></li>
-                </ul>
-            </div>
-        </div>
-        <div id="banner">
-            <div id="bg"></div>
-            <div id="overlay"></div>
-            <div id="overlay-text">
-                <div id="header">
-                    <h1>Benjamin Cheng</h1>
-                    <p>Hey there, I'm Ben. I'm a Developer.</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Benjamin Cheng</title>
 
-                    <div id="social">
-                        <ul>
-                            <li><i class="fa fa-linkedin-square fa-5x"></i></li>
-                            <li><i class="fa fa-github fa-5x"></i></li>
-                            <li><i class="fa fa-twitter-square fa-5x"></i></li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="footer">
-                    <i class="fa fa-chevron fa-5x"></i>
-                </div>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Montserrat" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <section id="home">
+        <div class="container">
+            <h1>Hey there, </h1>
+            <h1>I'm <strong>Benjamin Cheng</strong>.</h1>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="container">
+            <div class="col-md-4 col-sm-12">
+                <a class="card" href="#">
+                    <img class="img-responsive" src="/img/authfid.jpg"/>
+                    <div class="title">AuthFID</div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a class="card" href="#">
+                    <img class="img-responsive" src="/img/studyhub.png"/>
+                    <div class="title">StudyHub</div>
+                </a>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <a class="card" href="#">
+                    <img class="img-responsive" src="/img/projectascension.png">
+                    <div class="title">Project Ascension</div>
+                </a>
             </div>
         </div>
-        <div id="main">
-            <div class="container">
-                <h1>About Me</h1>
-                <p>Hi, I'm a high school student, and I think programming is awesome.</p>
+    </section>
+    <section id="footer">
+        <div class="container">
+            &copy; 2016 Benjamin Cheng
+            <div class="pull-right">
+                Find me on:
             </div>
         </div>
-        <div id="footer">
-            <div class="container">
-                Benjamin Cheng
-            </div>
-        </div>
+    </section>
 
-        <script src="https://code.jquery.com/jquery-2.1.4.js" charset="utf-8"></script>
-        <script src="app.js" charset="utf-8"></script>
-    </body>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
 </html>
