@@ -1,0 +1,8 @@
+<h2 class="page-header">
+    Recent Posts
+    <a ui-sref="post.create" class="btn btn-primary pull-right">Create Post</a>
+</h2>
+
+<div class="row" ng-repeat="post in posts">
+    <h3>{{ post.title }}</h3>
+</div>

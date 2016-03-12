@@ -1,0 +1,14 @@
+$font-family: Roboto, sans-serif;
+$headings-font-family: Montserrat, sans-serif;
+
+body {
+  font-family: $font-family;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headings-font-family;
+}
+
+.navbar-brand {
+  font-family: $headings-font-family;
+}

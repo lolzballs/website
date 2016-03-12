@@ -1,0 +1,178 @@
+angular.module('app', ['ui.router', 'restangular']).run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+    $rootScope.authenticated = true;
+
+    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+        // TODO: implement authentication
+        if (toState.authenticate && !$rootScope.authenticated) {
+            $state.transitionTo(fromState.name == '' ? 'home.index' : fromState.name);
+            event.preventDefault();
+        }
+    });
+}]).config(['$stateProvider', '$locationProvider', 'RestangularProvider', function ($stateProvider, $locationProvider, RestangularProvider) {
+    $locationProvider.html5Mode(true);
+    RestangularProvider.setBaseUrl('/api');
+
+    $stateProvider.state('home', {
+        abstract: true,
+        views: {
+            main: {
+                templateUrl: '/templates/home.html'
+            }
+        }
+    }).state('home.index', {
+        url: '/',
+        views: {
+            posts: {
+                templateUrl: '/templates/post.list.html',
+                controller: 'PostListController'
+            },
+            categories: {
+                templateUrl: '/templates/category.list.html',
+                controller: 'CategoryListController'
+            },
+            tags: {
+                templateUrl: '/templates/tag.list.html',
+                controller: 'TagListController'
+            }
+        }
+    }).state('post', {
+        abstract: true,
+        views: {
+            main: {
+                templateUrl: '/templates/post.html'
+            }
+        }
+    }).state('post.index', {
+        url: '/posts',
+        views: {
+            posts: {
+                templateUrl: '/templates/post.list.html',
+                controller: 'PostListController'
+            }
+        }
+    }).state('post.create', {
+        url: '/post/create',
+        views: {
+            posts: {
+                templateUrl: '/templates/post.create.html',
+                controller: 'PostCreateController'
+            }
+        },
+        authenticate: true
+    }).state('tag', {
+        abstract: true,
+        views: {
+            main: {
+                templateUrl: '/templates/tag.html'
+            }
+        }
+    }).state('tag.index', {
+        url: '/tags',
+        views: {
+            tags: {
+                templateUrl: '/templates/tag.list.html',
+                controller: 'TagListController'
+            }
+        }
+    }).state('tag.create', {
+        url: '/tag/create',
+        views: {
+            tags: {
+                templateUrl: '/templates/tag.create.html',
+                controller: 'TagCreateController'
+            }
+        },
+        authenticate: true
+    }).state('category', {
+        abstract: true,
+        views: {
+            main: {
+                templateUrl: '/templates/category.html'
+            }
+        }
+    }).state('category.index', {
+        url: '/categories',
+        views: {
+            categories: {
+                templateUrl: '/templates/category.list.html',
+                controller: 'CategoryListController'
+            }
+        }
+    }).state('category.create', {
+        url: '/category/create',
+        views: {
+            categories: {
+                templateUrl: '/templates/category.create.html',
+                controller: 'CategoryCreateController'
+            }
+        },
+        authenticate: true
+    });
+}]);
+angular.module('app').controller('CategoryListController', ['$scope', 'Restangular', function($scope, Restangular) {
+    $scope.categories = Restangular.all('category').getList().$object;
+}]);
+
+angular.module('app').controller('CategoryCreateController', ['$scope', 'Restangular', function($scope, Restangular) {
+    $scope.category = {};
+
+    $scope.create = function(category) {
+        Restangular.all('category').post(category);
+    };
+
+    $scope.cancel = function() {
+        resetForm();
+    };
+
+    var resetForm = function() {
+        $scope.category = null;
+        $scope.categoryForm.$setPristine();
+    };
+}]);
+angular.module('app').controller('PostCreateController', ['$scope', 'Restangular', function($scope, Restangular) {
+    $scope.tags = Restangular.all('tag').getList().$object;
+    $scope.categories = Restangular.all('category').getList().$object
+
+    $scope.post = {};
+
+    $scope.create = function(post) {
+        Restangular.all('post').post(post);
+    };
+
+    $scope.cancel = function() {
+        resetForm();
+    };
+
+    var resetForm = function() {
+        $scope.post = null;
+        $scope.postForm.$setPristine();
+    };
+}]);
+
+angular.module('app').controller('PostListController', ['$scope', 'Restangular', function($scope, Restangular) {
+    $scope.posts = Restangular.all('post').getList().$object;
+}]);
+
+angular.module('app').controller('TagListController', ['$scope', 'Restangular', function($scope, Restangular) {
+    $scope.tags = Restangular.all('tag').getList().$object;
+}]);
+
+angular.module('app').controller('TagCreateController', ['$scope', 'Restangular', function($scope, Restangular) {
+    $scope.category = {};
+
+    $scope.create = function(tag) {
+        Restangular.all('tag').post(tag);
+    };
+
+    $scope.cancel = function() {
+        resetForm();
+    };
+
+    var resetForm = function() {
+        $scope.tag = null;
+        $scope.tagForm.$setPristine();
+    };
+}]);
+//# sourceMappingURL=all.js.map
