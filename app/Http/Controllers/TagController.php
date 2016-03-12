@@ -28,7 +28,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|unique:tags|max:255',
         ]);
 
         $tag = Tag::create([
@@ -50,25 +50,30 @@ class TagController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified tag in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     * @param  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $tag)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+        ]);
+
+        $tag->name = $request->name;
+        return $tag;
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified tag from storage.
      *
-     * @param  int $id
+     * @param  Tag $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($tag)
     {
-        //
+        $tag->delete();
     }
 }

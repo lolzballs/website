@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests;
+use App\Post;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class PostController extends Controller
     /**
      * Display a list of all posts.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -37,68 +38,68 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created post in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'tags.*' => 'exists:tags,id',
+            'categories.*' => 'exists:categories,id',
+        ]);
+
+        $post = Post::create([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        if (isset($request->categories)) {
+            $post->categories()->sync($request->categories);
+        }
+
+        if (isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        }
+
+        $post->load('categories', 'tags');
+        return $post;
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified post.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param  Post $post
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($id)
+    public function show($post)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $post;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param  Post $post
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $post)
     {
-        //
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified post from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param  Post $post
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($post)
     {
-        //
+        $post->delete();
     }
 }

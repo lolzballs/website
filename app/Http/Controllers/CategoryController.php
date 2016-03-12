@@ -12,7 +12,7 @@ class CategoryController extends Controller
     /**
      * Display a list of all categories.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -23,12 +23,12 @@ class CategoryController extends Controller
      * Store a newly created category in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|unique:categories|max:255',
         ]);
 
         $category = Category::create([
@@ -42,7 +42,7 @@ class CategoryController extends Controller
      * Display the specified category.
      *
      * @param  Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($category)
     {
@@ -50,25 +50,30 @@ class CategoryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $category)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:categories|max:255',
+        ]);
+
+        $category->name = $request->name;
+        return $category;
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy($id)
+    public function destroy($category)
     {
-        //
+        $category->delete();
     }
 }

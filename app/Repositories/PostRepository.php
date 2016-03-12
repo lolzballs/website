@@ -15,7 +15,7 @@ class PostRepository
      *
      * @param array $params
      *
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function all($params = [])
     {
@@ -27,8 +27,7 @@ class PostRepository
      *
      * @param Category $category
      * @param array $params
-     *
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function forCategory(Category $category, $params = [])
     {
@@ -40,8 +39,7 @@ class PostRepository
      *
      * @param Tag $tag
      * @param array $params
-     *
-     * @return Collection
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     public function forTag(Tag $tag, $params = [])
     {
@@ -49,37 +47,10 @@ class PostRepository
     }
 
     /**
-      * Add given tag to given post.
-      *
-      * @param Post $post
-      * @param Tag $tag
-      *
-      * @return void
-      */
-    public function addTag(Post $post, Tag $tag)
-    {
-        $post->tags()->attach($tag->id);
-    }
-
-    /**
-     * Add given category to given post.
-     *
-     * @param Post $post
-     * @param Category $category
-     *
-     * @return void
-     */
-    public function addCategory(Post $post, Category $category)
-    {
-        $post->categories()->attach($category->id);
-    }
-
-    /**
      * Add given tag to given post.
      *
      * @param Post $post
      * @param Tag $tag
-     *
      * @return void
      * @throws NotFoundHttpException
      */
@@ -97,7 +68,6 @@ class PostRepository
      *
      * @param Post $post
      * @param Category $category
-     *
      * @return void
      * @throws NotFoundHttpException
      */
