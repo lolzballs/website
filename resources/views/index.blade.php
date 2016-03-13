@@ -44,6 +44,9 @@
 <script type="text/javascript" src="/components/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script type="text/javascript" src="/components/restangular/dist/restangular.min.js"></script>
 <script type="text/javascript" src="/components/lodash/dist/lodash.min.js"></script>
+<script type="text/javascript" src="/components/moment/min/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="/components/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+<script type="text/javascript" src="/components/angular-moment/angular-moment.min.js"></script>
 
 <script type="text/javascript" src="/js/all.js"></script>
 

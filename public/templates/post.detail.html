@@ -1,0 +1,8 @@
+<h2 class="page-header">
+    {{post.title}}
+    <a ui-sref="post.edit({id: $stateParams.id})" class="btn btn-primary pull-right">Edit Post</a>
+</h2>
+
+<div class="content">
+    {{post.body}}
+</div>

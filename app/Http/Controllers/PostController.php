@@ -77,6 +77,7 @@ class PostController extends Controller
      */
     public function show($post)
     {
+        $post->load('tags', 'categories');
         return $post;
     }
 
@@ -89,7 +90,27 @@ class PostController extends Controller
      */
     public function update(Request $request, $post)
     {
+        $this->validate($request, [
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'tags.*' => 'exists:tags,id',
+            'categories.*' => 'exists:categories,id',
+        ]);
 
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        if (isset($request->categories)) {
+            $post->categories()->sync($request->categories);
+        }
+
+        if (isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        }
+        $post->save();
+
+        $post->load('categories', 'tags');
+        return $post;
     }
 
     /**

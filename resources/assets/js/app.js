@@ -1,9 +1,9 @@
-angular.module('app', ['ui.router', 'restangular']).run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $rootScope.authenticated = true;
 
-    $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
         // TODO: implement authentication
         if (toState.authenticate && !$rootScope.authenticated) {
             $state.transitionTo(fromState.name == '' ? 'home.index' : fromState.name);
@@ -61,6 +61,22 @@ angular.module('app', ['ui.router', 'restangular']).run(['$rootScope', '$state',
             }
         },
         authenticate: true
+    }).state('post.detail', {
+        url: '/post/:id',
+        views: {
+            posts: {
+                templateUrl: '/templates/post.detail.html',
+                controller: 'PostDetailController'
+            }
+        }
+    }).state('post.edit', {
+        url: '/post/:id/edit',
+        views: {
+            posts: {
+                templateUrl: '/templates/post.edit.html',
+                controller: 'PostEditController'
+            }
+        }
     }).state('tag', {
         abstract: true,
         views: {
@@ -110,4 +126,6 @@ angular.module('app', ['ui.router', 'restangular']).run(['$rootScope', '$state',
         },
         authenticate: true
     });
-}]);
+}]).constant('angularMomentConfig', {
+    preprocess: 'utc'
+});
