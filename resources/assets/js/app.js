@@ -127,5 +127,6 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$root
         authenticate: true
     });
 }]).constant('angularMomentConfig', {
-    preprocess: 'utc'
+    preprocess: 'utc',
+    timezone: moment.tz.guess()
 });
