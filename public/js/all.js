@@ -127,8 +127,11 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$root
         authenticate: true
     });
 }]).constant('angularMomentConfig', {
-    preprocess: 'utc',
     timezone: moment.tz.guess()
+}).filter('localTime', function() {
+    return function(time) {
+        return moment.utc(time).local();
+    }
 });
 angular.module('app').controller('CategoryListController', ['$scope', 'Restangular', function($scope, Restangular) {
     $scope.categories = Restangular.all('category').getList().$object;
