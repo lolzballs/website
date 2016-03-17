@@ -16,6 +16,8 @@ class TagController extends Controller
      */
     public function index()
     {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+
         return Tag::all();
     }
 

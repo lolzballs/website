@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
+     * CategoryController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a list of all categories.
      *
      * @return \Illuminate\Http\JsonResponse

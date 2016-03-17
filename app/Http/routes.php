@@ -15,29 +15,20 @@ Route::get('/', function () {
     return view('landing');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
+Route::group(['middleware' => ['web']], function() {
+    Route::get('auth/login', 'Auth\AuthController@getLogin');
+    Route::post('auth/login', 'Auth\AuthController@login');
+    Route::get('auth/logout', 'Auth\AuthController@logout');
 
-Route::group(['middleware' => ['web'], 'prefix' => 'api'], function() {
-    Route::resource('post', 'PostController');
-    Route::resource('tag', 'TagController');
-    Route::resource('category', 'CategoryController');
-});
+    Route::resource('api/post', 'PostController');
+    Route::resource('api/tag', 'TagController');
+    Route::resource('api/category', 'CategoryController');
 
-Route::group(['middleware' => ['web'], 'prefix' => 'blog'], function() {
-    Route::get('/', function() {
+    Route::get('blog', function() {
         return view('index');
     });
 
-    Route::any('{undefinedRoute}', function() {
+    Route::any('blog/{undefinedRoute}', function() {
         return view('index');
     })->where('undefinedRoute', '([A-z\d-\/_.]+)?');
 });

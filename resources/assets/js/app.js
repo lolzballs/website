@@ -13,6 +13,9 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$root
 }]).config(['$stateProvider', '$locationProvider', 'RestangularProvider', function ($stateProvider, $locationProvider, RestangularProvider) {
     $locationProvider.html5Mode(true);
     RestangularProvider.setBaseUrl('/api');
+    //RestangularProvider.setDefaultHttpFields({
+    //    withCredentials: true
+    //});
 
     $stateProvider.state('home', {
         abstract: true,
@@ -37,6 +40,30 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$root
                 controller: 'TagListController'
             }
         }
+    }).state('auth', {
+        abstract: true,
+        views: {
+            main: {
+                templateUrl: '/templates/auth.html'
+            }
+        }
+    }).state('auth.login', {
+        url: '/auth/login',
+        views: {
+            auth: {
+                templateUrl: '/templates/auth.login.html',
+                controller: 'AuthLoginController'
+            }
+        }
+    }).state('auth.logout', {
+        url: '/auth/logout',
+        views: {
+            auth: {
+                templateUrl: '/templates/auth.logout.html',
+                controller: 'AuthLogoutController'
+            }
+        },
+        authenticate: true
     }).state('post', {
         abstract: true,
         views: {
@@ -76,7 +103,8 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$root
                 templateUrl: '/templates/post.edit.html',
                 controller: 'PostEditController'
             }
-        }
+        },
+        authenticate: true
     }).state('tag', {
         abstract: true,
         views: {
@@ -128,8 +156,8 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$root
     });
 }]).constant('angularMomentConfig', {
     timezone: moment.tz.guess()
-}).filter('localTime', function() {
-    return function(time) {
+}).filter('localTime', function () {
+    return function (time) {
         return moment.utc(time).local();
     }
 });
