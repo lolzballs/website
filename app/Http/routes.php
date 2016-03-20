@@ -20,6 +20,9 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('auth/login', 'Auth\AuthController@login');
     Route::get('auth/logout', 'Auth\AuthController@logout');
 
+    Route::get('api/auth', function() {
+        return (String) Auth::check();
+    });
     Route::resource('api/post', 'PostController');
     Route::resource('api/tag', 'TagController');
     Route::resource('api/category', 'CategoryController');

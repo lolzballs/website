@@ -3,7 +3,7 @@
     <small ng-attr-title="{{post.created_at | localTime | amDateFormat:'MM/DD/YYYY HH:mm:ss'}}">
         {{post.created_at | localTime | amCalendar}}
     </small>
-    <a ui-sref="post.edit({id: $stateParams.id})" class="btn btn-primary pull-right">Edit Post</a>
+    <a ui-sref="post.edit({id: $stateParams.id})" class="btn btn-primary pull-right" ng-show="authenticated">Edit Post</a>
 </h2>
 
 <div class="content">

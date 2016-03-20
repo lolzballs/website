@@ -1,21 +1,20 @@
-angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$rootScope', '$state', '$stateParams', '$http', function ($rootScope, $state, $stateParams, $http) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
-    $rootScope.authenticated = true;
+    $http.get('/api/auth').then(function(response) {
+        $rootScope.authenticated = response.data;
+    });
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
         // TODO: implement authentication
         if (toState.authenticate && !$rootScope.authenticated) {
-            $state.transitionTo(fromState.name == '' ? 'home.index' : fromState.name);
+            $state.transitionTo(fromState.name == '' ? 'home.index' : fromState.name, fromParams);
             event.preventDefault();
         }
     });
 }]).config(['$stateProvider', '$locationProvider', 'RestangularProvider', function ($stateProvider, $locationProvider, RestangularProvider) {
     $locationProvider.html5Mode(true);
     RestangularProvider.setBaseUrl('/api');
-    //RestangularProvider.setDefaultHttpFields({
-    //    withCredentials: true
-    //});
 
     $stateProvider.state('home', {
         abstract: true,
