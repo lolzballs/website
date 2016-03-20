@@ -8,7 +8,7 @@ angular.module('app', ['ui.router', 'restangular', 'angularMoment', 'btford.mark
     });
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-        if (!$rootScope.wait && toState.authenticate && !$rootScope.authenticated)) {
+        if (!$rootScope.wait && toState.authenticate && !$rootScope.authenticated) {
             $state.transitionTo(fromState.name == '' ? 'home.index' : fromState.name, fromParams);
             event.preventDefault();
         }
