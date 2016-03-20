@@ -7,4 +7,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-brand {
   font-family: Montserrat, sans-serif; }
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 970px; } }
+
 /*# sourceMappingURL=app.css.map */
