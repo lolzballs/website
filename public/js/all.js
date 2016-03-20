@@ -1,13 +1,14 @@
 angular.module('app', ['ui.router', 'restangular', 'angularMoment', 'btford.markdown']).run(['$rootScope', '$state', '$stateParams', '$http', function ($rootScope, $state, $stateParams, $http) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
+    $rootScope.wait = true;
     $http.get('/api/auth').then(function(response) {
         $rootScope.authenticated = response.data;
+        $rootScope.wait = false;
     });
 
     $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
-        // TODO: implement authentication
-        if (toState.authenticate && !$rootScope.authenticated) {
+        if (!$rootScope.wait && toState.authenticate && !$rootScope.authenticated)) {
             $state.transitionTo(fromState.name == '' ? 'home.index' : fromState.name, fromParams);
             event.preventDefault();
         }
