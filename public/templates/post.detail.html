@@ -6,6 +6,5 @@
     <a ui-sref="post.edit({id: $stateParams.id})" class="btn btn-primary pull-right" ng-show="authenticated">Edit Post</a>
 </h2>
 
-<div class="content">
-    {{post.body}}
+<div class="content" btf-markdown="post.body">
 </div>

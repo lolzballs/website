@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router', 'restangular', 'angularMoment']).run(['$rootScope', '$state', '$stateParams', '$http', function ($rootScope, $state, $stateParams, $http) {
+angular.module('app', ['ui.router', 'restangular', 'angularMoment', 'btford.markdown']).run(['$rootScope', '$state', '$stateParams', '$http', function ($rootScope, $state, $stateParams, $http) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
     $http.get('/api/auth').then(function(response) {
