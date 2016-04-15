@@ -1,5 +1,4 @@
-$font-family: Roboto, sans-serif;
-$headings-font-family: Montserrat, sans-serif;
+@import 'vars.scss';
 
 body {
   font-family: $font-family;
@@ -21,4 +20,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .list-unstyled ul {
   padding-left: 0;
+}
+
+.content {
+  font-size: 18px;
 }
