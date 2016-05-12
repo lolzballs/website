@@ -1,27 +1,38 @@
 $(function () {
+    var Controllers = {
+        home: function () {
+            $('#slogan').typed({
+                strings: ['Programmer Extraordinaire', 'Dumbfuck Genius', 'Professional Bullshitter'],
+                typeSpeed: 10,
+                backDelay: 1000,
+                loop: true
+            });
+        },
+        about: function () {
+
+        },
+        contact: function () {
+
+        },
+        portfolio: function () {
+
+        },
+        blog: function () {
+
+        }
+    };
     function showTab(name) {
         $.get('/templates/' + name + '.html').then(function (res) {
             $('#content').html(res);
-            if (name === 'home') {
-                $('#slogan').typed({
-                    strings: ['Programmer Extraordinaire', 'Dumbfuck Genius', 'Professional Bullshitter'],
-                    typeSpeed: 10,
-                    backDelay: 1000,
-                    loop: true
-                });
-            }
+            Controllers[name]();
         });
     }
-
-    var pages = ['home', 'about', 'contact', 'portfolio', 'blog'];
-    pages.forEach(function (page) {
-        $('#' + page).hide();
-        $('#nav-' + page).click(function () {
-            showTab(page);
-        })
-    });
     showTab('home');
-
+    $(window).bind('hashchange', function () {
+        var hash = location.hash.substring(1);
+        showTab(hash === '' ? 'home' : hash);
+    });
+    
     var lastScrollTop = 0;
     var scrollHidden = false;
     $(window).scroll(function () {
@@ -40,9 +51,9 @@ $(function () {
         }
         return lastScrollTop = st;
     });
-    $('#nav').hover(function() {
+    $('#nav').hover(function () {
         $(this).removeClass('scroll-hidden');
-    }, function() {
+    }, function () {
         if (scrollHidden) {
             $(this).addClass('scroll-hidden');
         }

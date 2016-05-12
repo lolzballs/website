@@ -15,13 +15,13 @@
 <div id="nav">
     <div id="nav-inner">
         <div id="nav-left">
-            <a href="#" id="nav-about">About</a>
-            <a href="#" id="nav-contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
         <a href="#" id="nav-home"><img src="/img/logo.png"></a>
         <div id="nav-right">
-            <a href="#" id="nav-portfolio">Portfolio</a>
-            <a href="#" id="nav-blog">Blog</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#blog">Blog</a>
         </div>
     </div>
 </div>
