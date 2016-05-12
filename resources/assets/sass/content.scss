@@ -1,0 +1,80 @@
+@import "vars";
+
+#content {
+    height: 100%;
+    padding-top: 84px;
+    text-align: center;
+
+    #home {
+        height: calc(100% - 84px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        #title {
+            font-size: 2em;
+        }
+
+        #slogan-wrapper {
+            font-family: $font-family;
+            font-size: 2em;
+            margin-bottom: 2em;
+
+            #slogan {
+                display: inline-block;
+            }
+        }
+
+        #btn-wrapper {
+            .btn {
+                font-size: 1em;
+                margin: 0 1em;
+                color: #fff;
+                background: #2098e8;
+                border-radius: 3px;
+                transition: .5s cubic-bezier(.165, .84, .44, 1);
+                min-width: 8em;
+
+                &:hover {
+                    background: #147cc1;
+                }
+            }
+        }
+    }
+
+    #about {
+        height: calc(100% - 84px);
+
+        .full-height {
+            height: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        #about-desc {
+            font-size: 2em;
+            color: #2098e8;
+        }
+    }
+
+    #portfolio {
+        height: calc(100% - 84px);
+    }
+
+    #blog {
+        height: calc(100% - 84px);
+    }
+}
+

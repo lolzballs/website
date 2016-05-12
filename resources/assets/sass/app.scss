@@ -1,27 +1,85 @@
-@import 'vars.scss';
+@import 'vars';
+
+html {
+    height: 100%;
+    width: 100%;
+}
 
 body {
-  font-family: $font-family;
+    font-family: $font-family;
+    height: 100%;
+    width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $headings-font-family;
+    font-family: $headings-font-family;
 }
 
-.navbar-brand {
-  font-family: $headings-font-family;
+h1 {
+    font-size: 6em;
 }
 
-@media (min-width: 1200px) {
-  .container{
-    max-width: 740px;
-  }
+h2 {
+    font-size: 3em;
 }
 
-.list-unstyled ul {
-  padding-left: 0;
+h1, h2 {
+    color: #151515;
+    margin-bottom: .7em
 }
 
-.content {
-  font-size: 16px;
+h3 {
+    font-weight: 300;
+    font-size: 2em;
+}
+
+h3, h5 {
+    color: #151515;
+}
+
+h5 {
+    font-size: 1.5em;
+}
+
+.typed-cursor {
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
