@@ -20,6 +20,12 @@ Route::group(['middleware' => ['web']], function() {
     Route::post('auth/login', 'Auth\AuthController@login');
     Route::get('auth/logout', 'Auth\AuthController@logout');
 
+    Route::get('home', 'HomeController@home');
+    Route::get('about', 'HomeController@about');
+    Route::get('contact', 'HomeController@contact');
+    Route::get('portfolio', 'HomeController@portfolio');
+    Route::get('blog', 'HomeController@blog');
+
     Route::get('api/auth', function() {
         return (String) Auth::check();
     });

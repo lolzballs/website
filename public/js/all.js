@@ -22,7 +22,7 @@ $(function () {
         }
     };
     function showTab(name) {
-        $.get('/templates/' + name + '.html').then(function (res) {
+        $.get('/' + name).then(function (res) {
             $('#content').html(res);
             Controllers[name]();
         });
