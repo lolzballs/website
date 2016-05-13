@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('blog', [
+        return view('pages.blog', [
             'posts' => $this->posts->all(['orderBy' => 'created_at', 'sortOrder' => 'desc'])
         ]);
     }
@@ -83,8 +83,10 @@ class PostController extends Controller
      */
     public function show($request)
     {
-        $post = Post::where('slug', $request)->with('tags', 'categories')->get();
-        return $post;
+        $post = Post::where('slug', $request)->with('tags', 'categories')->firstOrFail();
+        return view('blog.show', [
+            'post' => $post
+        ]);
     }
 
     /**

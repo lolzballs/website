@@ -6,7 +6,7 @@
     text-align: center;
 
     #home {
-        height: calc(100% - 84px);
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -43,20 +43,10 @@
     }
 
     #about {
-        height: calc(100% - 84px);
+        height: 100%;
 
         .full-height {
             height: 100%;
-        }
-
-        .container {
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            margin-top: 32px;
-            margin-bottom: 32px;
         }
 
         p {
@@ -70,13 +60,13 @@
     }
 
     #portfolio {
-        height: calc(100% - 84px);
+        height: 100%;
     }
 
     #blog {
-        height: calc(100% - 84px);
+        height: 100%;
 
-        .post {
+        .post-entry {
             text-align: left;
             color: #000;
             display: block;

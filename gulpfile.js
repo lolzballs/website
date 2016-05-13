@@ -18,7 +18,8 @@ elixir(function(mix) {
         'normalize.scss',
         'app.scss',
         'content.scss',
-        'navbar.scss'
+        'navbar.scss',
+        'blog.scss'
     ]);
     mix.scriptsIn('resources/assets/js');
 });

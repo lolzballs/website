@@ -371,7 +371,7 @@ html {
 
 body {
   font-family: Roboto, sans-serif;
-  height: 100%;
+  height: calc(100% - 32px);
   width: 100%; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -396,6 +396,20 @@ h3, h5 {
 
 h5 {
   font-size: 1.5em; }
+
+.container {
+  max-width: 800px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 32px; }
 
 .typed-cursor {
   opacity: 1;
@@ -423,7 +437,7 @@ h5 {
   padding-top: 84px;
   text-align: center; }
   #content #home {
-    height: calc(100% - 84px);
+    height: 100%;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
@@ -452,55 +466,42 @@ h5 {
       #content #home #btn-wrapper .btn:hover {
         background: #147cc1; }
   #content #about {
-    height: calc(100% - 84px); }
+    height: 100%; }
     #content #about .full-height {
       height: 100%; }
-    #content #about .container {
-      max-width: 800px;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-      flex-direction: column;
-      -webkit-justify-content: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      margin-top: 32px;
-      margin-bottom: 32px; }
     #content #about p {
       font-size: 1em; }
     #content #about #about-desc {
       font-size: 2em;
       color: #2098e8; }
   #content #portfolio {
-    height: calc(100% - 84px); }
+    height: 100%; }
   #content #blog {
-    height: calc(100% - 84px); }
-    #content #blog .post {
+    height: 100%; }
+    #content #blog .post-entry {
       text-align: left;
       color: #000;
       display: block;
       margin-bottom: 3em; }
-      #content #blog .post:hover {
+      #content #blog .post-entry:hover {
         text-decoration: none;
         color: #2098e8; }
-      #content #blog .post .post-content {
+      #content #blog .post-entry .post-content {
         display: block;
         padding: 15px; }
-        #content #blog .post .post-content .title {
+        #content #blog .post-entry .post-content .title {
           display: block;
           text-align: left;
           font-family: Montserrat, sans-serif;
           padding: 5px 0;
           font-size: 1.5em; }
-        #content #blog .post .post-content .time {
+        #content #blog .post-entry .post-content .time {
           display: block;
           color: #aaa;
           margin: 5px 0;
           font-family: Montserrat, sans-serif;
           font-size: 1.1em; }
-        #content #blog .post .post-content .excerpt {
+        #content #blog .post-entry .post-content .excerpt {
           line-height: 1.7em;
           font-size: 1.2em;
           color: #555; }
@@ -558,5 +559,40 @@ h5 {
       left: 50%;
       top: 0;
       margin-left: 60px; }
+
+.post {
+  margin-top: 64px;
+  padding: 3em 0; }
+  .post .title {
+    font-size: 4em;
+    margin-top: 0;
+    text-align: center; }
+  .post .post-meta {
+    font-family: Montserrat, sans-serif;
+    text-align: center;
+    color: #aaa;
+    display: block;
+    font-size: 1.2em;
+    line-height: 1.7em;
+    margin: 0 0 2em; }
+  .post h1, .post h2 {
+    font-family: Montserrat, sans-serif;
+    color: #151515;
+    margin-top: 1em;
+    margin-bottom: .7em; }
+  .post h1 {
+    font-size: 3em; }
+  .post h2 {
+    font-size: 2em; }
+  .post p {
+    color: #555;
+    font-size: 1.2em;
+    line-height: 1.8em; }
+  .post hr {
+    margin-left: -3em;
+    margin-right: -3em;
+    border-style: none;
+    height: 1px;
+    background: #EEE; }
 
 /*# sourceMappingURL=app.css.map */

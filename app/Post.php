@@ -8,7 +8,7 @@ use Illuminate\Database\Query\Builder;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'slug', 'body'];
 
     public function tags()
     {
