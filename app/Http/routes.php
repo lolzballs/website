@@ -24,7 +24,7 @@ Route::group(['middleware' => ['web']], function() {
     Route::get('about', 'HomeController@about');
     Route::get('contact', 'HomeController@contact');
     Route::get('portfolio', 'HomeController@portfolio');
-    Route::get('blog', 'HomeController@blog');
+    Route::resource('blog', 'PostController');
 
     Route::get('api/auth', function() {
         return (String) Auth::check();
@@ -32,12 +32,4 @@ Route::group(['middleware' => ['web']], function() {
     Route::resource('api/post', 'PostController');
     Route::resource('api/tag', 'TagController');
     Route::resource('api/category', 'CategoryController');
-
-    Route::get('blog', function() {
-        return view('index');
-    });
-
-    Route::any('blog/{undefinedRoute}', function() {
-        return view('index');
-    })->where('undefinedRoute', '([A-z\d-\/_.]+)?');
 });

@@ -477,6 +477,33 @@ h5 {
     height: calc(100% - 84px); }
   #content #blog {
     height: calc(100% - 84px); }
+    #content #blog .post {
+      text-align: left;
+      color: #000;
+      display: block;
+      margin-bottom: 3em; }
+      #content #blog .post:hover {
+        text-decoration: none;
+        color: #2098e8; }
+      #content #blog .post .post-content {
+        display: block;
+        padding: 15px; }
+        #content #blog .post .post-content .title {
+          display: block;
+          text-align: left;
+          font-family: Montserrat, sans-serif;
+          padding: 5px 0;
+          font-size: 1.5em; }
+        #content #blog .post .post-content .time {
+          display: block;
+          color: #aaa;
+          margin: 5px 0;
+          font-family: Montserrat, sans-serif;
+          font-size: 1.1em; }
+        #content #blog .post .post-content .excerpt {
+          line-height: 1.7em;
+          font-size: 1.2em;
+          color: #555; }
 
 #nav {
   width: 100%;

@@ -27,11 +27,10 @@ $(function () {
             Controllers[name]();
         });
     }
-    showTab('home');
     $(window).bind('hashchange', function () {
         var hash = location.hash.substring(1);
         showTab(hash === '' ? 'home' : hash);
-    });
+    }).trigger('hashchange');
     
     var lastScrollTop = 0;
     var scrollHidden = false;

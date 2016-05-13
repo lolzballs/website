@@ -29,7 +29,6 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot($router);
 
-        $router->model('post', Post::class);
         $router->model('tag', Tag::class);
         $router->model('category', Category::class);
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+
 class HomeController extends Controller
 {
     public function home()
@@ -22,10 +24,5 @@ class HomeController extends Controller
     public function portfolio()
     {
         return view('portfolio');
-    }
-
-    public function blog()
-    {
-        return view('blog');
     }
 }

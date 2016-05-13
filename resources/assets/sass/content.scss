@@ -75,6 +75,43 @@
 
     #blog {
         height: calc(100% - 84px);
+
+        .post {
+            text-align: left;
+            color: #000;
+            display: block;
+            margin-bottom: 3em;
+
+            &:hover {
+                text-decoration: none;
+                color: #2098e8;
+            }
+
+            .post-content {
+                display: block;
+                padding: 15px;
+
+                .title {
+                    display: block;
+                    text-align: left;
+                    font-family: $headings-font-family;
+                    padding: 5px 0;
+                    font-size: 1.5em;
+                }
+                .time {
+                    display: block;
+                    color: #aaa;
+                    margin: 5px 0;
+                    font-family: $headings-font-family;
+                    font-size: 1.1em;
+                }
+                .excerpt {
+                    line-height: 1.7em;
+                    font-size: 1.2em;
+                    color: #555;
+                }
+            }
+        }
     }
 }
 

@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Post;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -36,7 +37,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return $this->posts->all();
+        return view('blog', [
+            'posts' => $this->posts->all(['orderBy' => 'created_at', 'sortOrder' => 'desc'])
+        ]);
     }
 
     /**
@@ -56,6 +59,7 @@ class PostController extends Controller
 
         $post = Post::create([
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'body' => $request->body,
         ]);
 
@@ -74,12 +78,12 @@ class PostController extends Controller
     /**
      * Display the specified post.
      *
-     * @param  Post $post
+     * @param  Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show($post)
+    public function show($request)
     {
-        $post->load('tags', 'categories');
+        $post = Post::where('slug', $request)->with('tags', 'categories')->get();
         return $post;
     }
 

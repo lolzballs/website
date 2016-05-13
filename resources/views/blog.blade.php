@@ -1,3 +1,15 @@
 <div id="blog">
-    <h2>Blog</h2>
+    <div class="container">
+        <h2>Blog</h2>
+
+        @foreach ($posts as $post)
+            <a class="post" href="{{URL::route('blog.show', $post->slug)}}">
+                <div class="post-content">
+                    <span class="title">{{$post->title}}</span>
+                    <span class="time">{{$post->created_at}}</span>
+                    <span class="excerpt">{{str_limit($post->body, $limit = 200, $end='...')}}</span>
+                </div>
+            </a>
+        @endforeach
+    </div>
 </div>
