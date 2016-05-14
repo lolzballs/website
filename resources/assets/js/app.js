@@ -2,7 +2,7 @@ $(function () {
     var Controllers = {
         home: function () {
             $('#slogan').typed({
-                strings: ['Programmer Extraordinaire', 'Dumbfuck Genius', 'Professional Bullshitter'],
+                strings: ['Programmer Extraordinaire', 'Some Random Bullshit', 'Professional Bullshitter'],
                 typeSpeed: 10,
                 backDelay: 1000,
                 loop: true
@@ -21,17 +21,19 @@ $(function () {
 
         }
     };
+
     function showTab(name) {
         $.get('/' + name).then(function (res) {
             $('#content').html(res);
             Controllers[name]();
         });
     }
+
     $(window).bind('hashchange', function () {
         var hash = location.hash.substring(1);
         showTab(hash === '' ? 'home' : hash);
     }).trigger('hashchange');
-    
+
     var lastScrollTop = 0;
     var scrollHidden = false;
     $(window).scroll(function () {
@@ -56,5 +58,21 @@ $(function () {
         if (scrollHidden) {
             $(this).addClass('scroll-hidden');
         }
+    });
+
+    $('#hamburger').click(function () {
+        $(this).toggleClass('active');
+        if ($(this).hasClass('active')) {
+            $('#mobile-menu').show();
+            return setTimeout(function () {
+                return $('#mobile-menu').addClass('active');
+            }, 20);
+        } else {
+            return $('#mobile-menu').removeClass('active').delay(200).hide(1);
+        }
+    });
+    $('#mobile-menu').find('a').click(function () {
+        $('#hamburger').removeClass('active');
+        return $('#mobile-menu').removeClass('active').delay(200).hide(1);
     });
 });

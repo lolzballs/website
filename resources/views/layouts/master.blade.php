@@ -23,13 +23,30 @@
             <a href="/#portfolio">Portfolio</a>
             <a href="/#blog">Blog</a>
         </div>
+        <a id="hamburger" class="visible-xs">
+            <i class="material-icons">menu</i>
+        </a>
     </div>
 </div>
-
+<div id="mobile-menu">
+    <div class="container">
+        <a href="/#home" class="quickNav">HOME</a>
+        <div class="empty"></div>
+        <a href="/#about" class="quickNav">ABOUT</a>
+        <div class="empty"></div>
+        <a href="/#contact" class="quickNav">CONTACT</a>
+        <div class="empty"></div>
+        <a href="/#portfolio" class="quickNav">PORTFOLIO</a>
+        <div class="empty"></div>
+        <a href="/#blog" class="quickNav">BLOG</a>
+    </div>
+</div>
 @yield('content')
-
 <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://use.fontawesome.com/dfc8ce83ab.js"></script>
+<script type="text/javascript" src="/js/all.js"></script>
+
 @yield('javascript')
 </body>
 </html>
