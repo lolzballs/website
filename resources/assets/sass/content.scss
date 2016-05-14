@@ -4,6 +4,15 @@
     height: 100%;
     padding-top: 84px;
     text-align: center;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all .3s cubic-bezier(.165, .84, .44, 1);
+
+    &.loaded {
+        opacity: 1;
+        transform: translateY(0);
+        display: block;
+    }
 
     #home {
         height: 100%;

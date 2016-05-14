@@ -7,10 +7,10 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <img class="img-responsive" src="http://placehold.it/500x500">
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <h3>About Me</h3>
                 <p>
                     I sexually Identify as an Attack Helicopter. Ever since I was a boy I dreamed of soaring over the
@@ -26,7 +26,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <h3>Secondary Memes</h3>
                 <p>
                     Bacon ipsum dolor amet boudin ball tip cupim, salami ham bacon brisket spare ribs tenderloin
@@ -36,7 +36,7 @@
                     cupim rump cow filet mignon fatback.
                 </p>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <img class="img-responsive" src="http://placehold.it/500x500">
             </div>
         </div>

@@ -68,10 +68,9 @@
             margin-left: 60px;
         }
     }
-
-    #mobile-menu {
-        display: none;
-    }
+}
+#mobile-menu {
+    display: none;
 }
 
 @media (max-width: 767px) {
@@ -120,6 +119,11 @@
         padding-top: 80px;
         transition: all .2s;
         text-align: center;
+        transform: translateY(-100%);
+
+        &.active {
+            transform: translateY(0);
+        }
 
         a {
             padding: .5em;

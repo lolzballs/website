@@ -23,8 +23,9 @@ $(function () {
     };
 
     function showTab(name) {
+        $('#content').removeClass('loaded');
         $.get('/' + name).then(function (res) {
-            $('#content').html(res);
+            $('#content').addClass('loaded').html(res);
             Controllers[name]();
         });
     }
