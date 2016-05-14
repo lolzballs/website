@@ -42,6 +42,11 @@ class PostController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('blog.create');
+    }
+
     /**
      * Store a newly created post in storage.
      *
@@ -89,15 +94,23 @@ class PostController extends Controller
         ]);
     }
 
+    public function edit($request)
+    {
+        $post = Post::where('slug', $request)->with('tags', 'categories')->firstOrFail();
+        return view('blog.edit', [
+            'post' => $post
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  Post $post
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $post)
+    public function update(Request $request, $slug)
     {
+        $post = Post::where('slug', $slug)->with('tags', 'categories')->firstOrFail();
         $this->validate($request, [
             'title' => 'required|max:255',
             'body' => 'required',
