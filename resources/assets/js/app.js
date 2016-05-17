@@ -15,7 +15,9 @@ $(function () {
 
         },
         portfolio: function () {
-
+            $("#authfid").appendTo("body");
+            $("#studyhub").appendTo("body");
+            $("#pa").appendTo("body");
         },
         blog: function () {
 

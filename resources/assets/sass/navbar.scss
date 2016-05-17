@@ -69,6 +69,7 @@
         }
     }
 }
+
 #mobile-menu {
     display: none;
 }
@@ -77,6 +78,11 @@
     #nav {
         padding: 10px;
         border-bottom: 1px solid #ddd;
+
+        &.scroll-hidden {
+            transform: translateY(-100%) !important;
+            opacity: 0.5;
+        }
 
         #nav-inner {
             #nav-home {
