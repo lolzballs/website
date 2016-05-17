@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Post;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -77,7 +78,9 @@ class PostController extends Controller
         }
 
         $post->load('categories', 'tags');
-        return $post;
+        
+        return Redirect::to('/#show');
+
     }
 
     /**
@@ -131,7 +134,7 @@ class PostController extends Controller
         $post->save();
 
         $post->load('categories', 'tags');
-        return $post;
+        return Redirect::to('/#blog');
     }
 
     /**
