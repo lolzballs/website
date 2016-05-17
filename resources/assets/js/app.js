@@ -2,7 +2,7 @@ $(function () {
     var Controllers = {
         home: function () {
             $('#slogan').typed({
-                strings: ['Programmer Extraordinaire', 'Some Random Bullshit', 'Professional Bullshitter'],
+                strings: ['Programmer Extraordinaire', 'Software Developer'],
                 typeSpeed: 10,
                 backDelay: 1000,
                 loop: true
