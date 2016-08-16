@@ -1,0 +1,29 @@
+#blog {
+    padding: 0 1em;
+    max-width: 1024px;
+    margin: 0 auto;
+
+    .preview {
+        width: 100%;
+        padding: 1em 0 2em 0px;
+
+        .head {
+            padding: 1em 0 3em 0;
+
+            h2 {
+                font-size: 28px;
+                max-width: 80%;
+                margin: 0;
+                float: left;
+
+                a {
+                    color: #000;
+                }
+            }
+        }
+
+        .clear {
+            clear: both;
+        }
+    }
+}

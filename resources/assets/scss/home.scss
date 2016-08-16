@@ -1,0 +1,53 @@
+#home {
+    height: 100%;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+
+    #title {
+        font-size: 2em;
+    }
+
+    #slogan-wrapper {
+        font-family: 'Roboto', sans-serif;
+        font-size: 2em;
+        margin-bottom: 2em;
+
+        #slogan {
+            display: inline-block;
+        }
+
+        .typed-cursor {
+            opacity: 1;
+            -moz-animation: blink .7s infinite;
+            -webkit-animation: blink .7s infinite;
+            animation: blink .7s infinite;
+        }
+
+        @keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+
+        @-webkit-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+
+        @-moz-keyframes blink{
+            0% { opacity:1; }
+            50% { opacity:0; }
+            100% { opacity:1; }
+        }
+    }
+}

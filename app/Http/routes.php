@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', "PostController@index");
 
 Route::group(['middleware' => ['web']], function() {
     Route::get('auth/login', 'Auth\AuthController@getLogin');

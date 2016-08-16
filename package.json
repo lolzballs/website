@@ -1,10 +1,20 @@
 {
-  "private": true,
-  "devDependencies": {
-    "gulp": "^3.8.8"
-  },
+  "name": "personal",
+  "version": "1.0.0",
   "dependencies": {
-    "laravel-elixir": "^4.0.0",
-    "bootstrap-sass": "^3.0.0"
-  }
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "css-loader": "^0.23.1",
+    "jquery": "^3.1.0",
+    "node-sass": "^3.8.0",
+    "normalize.css": "^4.2.0",
+    "rmodal": "^1.0.22",
+    "rrssb": "^1.10.0",
+    "sass-loader": "^4.0.0",
+    "style-loader": "^0.13.1",
+    "typed.js": "^1.1.1",
+    "typer-js": "^2.1.0",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {}
 }

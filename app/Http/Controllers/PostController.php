@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('pages.blog', [
+        return view('landing', [
             'posts' => $this->posts->all(['orderBy' => 'created_at', 'sortOrder' => 'desc'])
         ]);
     }
