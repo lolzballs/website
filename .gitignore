@@ -1,8 +1,8 @@
 /vendor
 /node_modules
-/public/components
 /public/storage
 Homestead.yaml
 Homestead.json
 .env
 .idea
+.projectile
