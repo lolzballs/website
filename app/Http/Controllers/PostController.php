@@ -78,7 +78,7 @@ class PostController extends Controller
         }
 
         $post->load('categories', 'tags');
-        
+
         return Redirect::to('/#show');
 
     }

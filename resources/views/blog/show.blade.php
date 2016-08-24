@@ -9,7 +9,7 @@
                 <div class="title">
                     <h1>{{$post->title}}</h1>
                 </div>
-                <span class="post-meta">{{$post->created_at}}</span>
+                <span class="post-meta">{{$post->created_at->toFormattedDateString()}}</span>
                 <div>
                     {!!Markdown::convertToHtml($post->body)!!}
                 </div>

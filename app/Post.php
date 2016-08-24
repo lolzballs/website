@@ -9,6 +9,7 @@ use Illuminate\Database\Query\Builder;
 class Post extends Model
 {
     protected $fillable = ['title', 'slug', 'body'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function tags()
     {

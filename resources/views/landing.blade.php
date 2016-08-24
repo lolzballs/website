@@ -31,7 +31,7 @@
             <div class="preview">
                 <div class="head">
                     <h2><a href="{{URL::route('blog.show', $post->slug)}}">{{$post->title}}</a></h2>
-                    <span class="date right">{{$post->created_at}}</span>
+                    <span class="date right">{{$post->created_at->toFormattedDateString()}}</span>
                 </div>
                 <div class="clear"></div>
                 <div class="content">
