@@ -6,7 +6,9 @@
     <div class="container">
         <div id="blog">
             <div class="post">
-                <h1 class="title">{{$post->title}}</h1>
+                <div class="title">
+                    <h1>{{$post->title}}</h1>
+                </div>
                 <span class="post-meta">{{$post->created_at}}</span>
                 <div>
                     {!!Markdown::convertToHtml($post->body)!!}
