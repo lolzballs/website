@@ -13,7 +13,7 @@
                 <div class="clearfix"></div>
                 <div class="content">
                     <p>
-                        {{ post.body }}
+                        {{ post.body | striptags | truncate(100, true, "...") }}
                     </p>
                 </div>
             </div>

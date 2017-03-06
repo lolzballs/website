@@ -8,7 +8,7 @@
             <span class="date">{{ post.created_at }}</span>
         </div>
         <div class="content">
-            {{ post.body }} 
+            {{ post.body | safe }} 
         </div>
     </div>
 </div>

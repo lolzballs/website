@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {Connection} from 'typeorm';
 import * as slug from 'slug';
+import * as marked from 'marked';
 import Post from '../entities/Post';
 
 const router: Router = Router();
@@ -13,6 +14,11 @@ router.get("/", async (req, res) => {
             .createQueryBuilder("posts")
             .orderBy("posts.id", "DESC")
             .getMany();
+
+
+    for (let post of posts) {
+        post.body = marked(post.body);
+    }
     res.render("blog/index.html", {posts: posts});
 });
 
@@ -26,6 +32,7 @@ router.get("/:slug", async (req, res, next) => {
         return;
     }
 
+    post.body = marked(post.body);
     res.render("blog/view.html", {post: post});
 })
 

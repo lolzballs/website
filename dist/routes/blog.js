@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const slug = require("slug");
+const marked = require("marked");
 const Post_1 = require("../entities/Post");
 const router = express_1.Router();
 // LISTING
@@ -19,6 +20,9 @@ router.get("/", (req, res) => __awaiter(this, void 0, void 0, function* () {
         .createQueryBuilder("posts")
         .orderBy("posts.id", "DESC")
         .getMany();
+    for (let post of posts) {
+        post.body = marked(post.body);
+    }
     res.render("blog/index.html", { posts: posts });
 }));
 router.get("/:slug", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -29,6 +33,7 @@ router.get("/:slug", (req, res, next) => __awaiter(this, void 0, void 0, functio
         next();
         return;
     }
+    post.body = marked(post.body);
     res.render("blog/view.html", { post: post });
 }));
 // CREATE
