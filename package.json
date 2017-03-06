@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
-    "run": "tsc && concurrently \"tsc -w\" \"nodemon dist/bin/www.js\""
+    "run": "tsc && concurrently \"tsc -w\" \"nodemon dist/bin/www.js\"",
+    "start": "node dist/bin/www.js"
   },
   "dependencies": {
     "body-parser": "^1.17.0",
