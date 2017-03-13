@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
-    "run": "tsc && concurrently \"tsc -w\" \"nodemon dist/bin/www.js\"",
+    "run": "concurrently \"tsc -w\" \"nodemon dist/bin/www.js\"",
     "start": "node dist/bin/www.js"
   },
   "dependencies": {
     "body-parser": "^1.17.0",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.0",
+    "express-session": "^1.15.1",
     "marked": "^0.3.6",
     "mysql": "^2.13.0",
     "nunjucks": "^3.0.0",
@@ -19,8 +21,11 @@
   },
   "devDependencies": {
     "@types/express": "^4.0.35",
+    "@types/express-session": "^0.0.32",
     "@types/marked": "^0.0.28",
     "@types/nunjucks": "^0.0.32",
+    "@types/passport": "^0.3.3",
+    "@types/passport-local": "^1.0.29",
     "concurrently": "^3.4.0",
     "typescript": "^2.2.1"
   }

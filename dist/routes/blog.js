@@ -13,7 +13,14 @@ const slug = require("slug");
 const marked = require("marked");
 const Post_1 = require("../entities/Post");
 const router = express_1.Router();
-// LISTING
+const auth = (req, res, next) => {
+    if (req.session.auth) {
+        next();
+    }
+    else {
+        res.redirect('/auth/login');
+    }
+};
 router.get("/", (req, res) => __awaiter(this, void 0, void 0, function* () {
     let db = req.app.get("database");
     let posts = yield db.getRepository(Post_1.default)
@@ -24,6 +31,24 @@ router.get("/", (req, res) => __awaiter(this, void 0, void 0, function* () {
         post.body = marked(post.body);
     }
     res.render("blog/index.html", { posts: posts });
+}));
+router.post("/", auth, (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let db = req.app.get("database");
+    let repo = db.getRepository(Post_1.default);
+    let post = new Post_1.default();
+    post.title = req.body.title;
+    post.slug = slug(post.title, { lower: true });
+    post.body = req.body.body;
+    let id = 0;
+    while (typeof (yield repo
+        .findOne({ slug: post.slug + (id == 0 ? '' : id) }))
+        != 'undefined') {
+        console.log(post.slug + (id == 0 ? '' : id));
+        id++;
+    }
+    post.slug = post.slug + (id == 0 ? '' : id);
+    yield db.getRepository(Post_1.default).persist(post);
+    res.redirect("/blog/" + post.slug);
 }));
 router.get("/:slug", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     let db = req.app.get("database");
@@ -36,14 +61,40 @@ router.get("/:slug", (req, res, next) => __awaiter(this, void 0, void 0, functio
     post.body = marked(post.body);
     res.render("blog/view.html", { post: post });
 }));
-// CREATE
-router.post("/", (req, res) => __awaiter(this, void 0, void 0, function* () {
+router.get('/:slug/edit', auth, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     let db = req.app.get("database");
-    let post = new Post_1.default();
-    post.title = req.body.title;
-    post.slug = slug(post.title, { lower: true });
-    post.body = req.body.body;
-    yield db.getRepository(Post_1.default).persist(post);
-    res.redirect("/blog/" + post.slug);
+    let post = yield db.getRepository(Post_1.default)
+        .findOne({ slug: req.params.slug });
+    if (typeof (post) == 'undefined') {
+        next();
+        return;
+    }
+    res.render("blog/edit.html", { post: post });
 }));
+router.post('/:slug', auth, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    let db = req.app.get("database");
+    let repo = db.getRepository(Post_1.default);
+    let post = yield repo.findOne({ slug: req.params.slug });
+    if (typeof (post) == 'undefined') {
+        next();
+        return;
+    }
+    post.body = req.body['body'];
+    repo.persist(post);
+}));
+router.get('/:slug/delete', auth, (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+    let db = req.app.get("database");
+    let repo = db.getRepository(Post_1.default);
+    // TODO: Make this not slow
+    let post = yield repo.findOne({ slug: req.params.slug });
+    if (typeof (post) == 'undefined') {
+        next();
+        return;
+    }
+    yield db.getRepository(Post_1.default).remove(post);
+    res.redirect("/blog");
+}));
+router.get("/create", auth, (req, res) => {
+    res.render("blog/create.html");
+});
 exports.default = router;

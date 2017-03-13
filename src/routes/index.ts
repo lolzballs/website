@@ -1,4 +1,5 @@
 import {Router} from 'express';
+import auth from './auth';
 import blog from './blog';
 
 const router: Router = Router();
@@ -19,6 +20,7 @@ router.get('/projects', (req, res) => {
     res.render('projects.html');
 });
 
+router.use('/auth', auth)
 router.use('/blog', blog);
 
 export default router;

@@ -7,7 +7,7 @@ html, body {
 }
 
 .navbar-pad {
-    height: 6.5rem;
+    height: 8rem;
 }
 .navbar {
     position: fixed;
@@ -50,7 +50,7 @@ html, body {
 }
 .section.centered {
     position: relative;
-    height: calc(100% - 6.5rem);
+    height: calc(100% - 8rem);
 }
 .section.centered .container {
     position: absolute;
@@ -113,4 +113,20 @@ html, body {
 }
 #blog .content {
     margin: 1em 0;
+}
+
+#blog-form {
+    height: calc(100% - 7rem);
+    width: 100%;
+}
+#blog-form #title {
+    width: 100%;
+}
+#blog-form #body {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+}
+#blog-form #submit {
+    width: 100%;
 }

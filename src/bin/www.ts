@@ -4,7 +4,6 @@ import 'reflect-metadata';
 import * as http from 'http';
 import {app} from '../app';
 
-
 const port = normalizePort(process.env.PORT);
 app.set('port', port);
 

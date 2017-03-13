@@ -5,8 +5,14 @@ import * as marked from 'marked';
 import Post from '../entities/Post';
 
 const router: Router = Router();
+const auth  = (req, res, next) => {
+    if (req.session.auth) {
+        next();
+    } else {
+        res.redirect('/auth/login');
+    }
+};
 
-// LISTING
 router.get("/", async (req, res) => {
     let db: Connection = req.app.get("database");
 
@@ -15,11 +21,32 @@ router.get("/", async (req, res) => {
             .orderBy("posts.id", "DESC")
             .getMany();
 
-
     for (let post of posts) {
         post.body = marked(post.body);
     }
     res.render("blog/index.html", {posts: posts});
+});
+
+router.post("/", auth, async (req, res) => {
+    let db: Connection = req.app.get("database");
+    let repo = db.getRepository(Post);
+
+    let post = new Post();
+    post.title = req.body.title;
+    post.slug = slug(post.title, {lower: true});
+    post.body = req.body.body;
+
+    let id = 0;
+    while (typeof(await repo
+                .findOne({ slug: post.slug + (id == 0 ? '' : id)}))
+                != 'undefined') {
+        console.log(post.slug + (id == 0 ? '' : id));
+        id++;
+    }
+    post.slug = post.slug + (id == 0 ? '' : id);
+
+    await db.getRepository(Post).persist(post);
+    res.redirect("/blog/" + post.slug);
 });
 
 router.get("/:slug", async (req, res, next) => {
@@ -34,19 +61,53 @@ router.get("/:slug", async (req, res, next) => {
 
     post.body = marked(post.body);
     res.render("blog/view.html", {post: post});
-})
+});
 
-// CREATE
-router.post("/", async (req, res) => {
+router.get('/:slug/edit', auth, async (req, res, next) => {
     let db: Connection = req.app.get("database");
 
-    let post = new Post();
-    post.title = req.body.title;
-    post.slug = slug(post.title, {lower: true});
-    post.body = req.body.body;
+    let post = await db.getRepository(Post)
+                        .findOne({ slug: req.params.slug });
+    if (typeof(post) == 'undefined') {
+        next();
+        return;
+    }
 
-    await db.getRepository(Post).persist(post);
-    res.redirect("/blog/" + post.slug);
+    res.render("blog/edit.html", {post: post});
+});
+
+router.post('/:slug', auth, async (req, res, next) => {
+    let db: Connection = req.app.get("database");
+    let repo = db.getRepository(Post);
+
+    let post = await repo.findOne({ slug: req.params.slug });
+    if (typeof(post) == 'undefined') {
+        next();
+        return;
+    }
+
+    post.body = req.body['body'];
+    repo.persist(post);
+});
+
+router.get('/:slug/delete', auth, async (req, res, next) => {
+    let db: Connection = req.app.get("database");
+    let repo = db.getRepository(Post);
+
+    // TODO: Make this not slow
+    let post = await repo.findOne({ slug: req.params.slug });
+    if (typeof(post) == 'undefined') {
+        next();
+        return;
+    }
+    await db.getRepository(Post).remove(post);
+
+    res.redirect("/blog");
+
+});
+
+router.get("/create", auth, (req, res) => {
+    res.render("blog/create.html");
 });
 
 export default router;
