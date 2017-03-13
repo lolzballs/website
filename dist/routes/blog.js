@@ -78,7 +78,6 @@ router.post('/:slug', auth, (req, res, next) => __awaiter(this, void 0, void 0, 
         next();
         return;
     }
-    console.dir(req.body);
     post.body = req.body['body'];
     repo.persist(post);
     res.redirect('/blog');

@@ -85,7 +85,6 @@ router.post('/:slug', auth, async (req, res, next) => {
         return;
     }
 
-    console.dir(req.body);
     post.body = req.body['body'];
     repo.persist(post);
 
