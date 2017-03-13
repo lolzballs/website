@@ -40,7 +40,6 @@ router.post("/", auth, async (req, res) => {
     while (typeof(await repo
                 .findOne({ slug: post.slug + (id == 0 ? '' : id)}))
                 != 'undefined') {
-        console.log(post.slug + (id == 0 ? '' : id));
         id++;
     }
     post.slug = post.slug + (id == 0 ? '' : id);
@@ -86,8 +85,11 @@ router.post('/:slug', auth, async (req, res, next) => {
         return;
     }
 
+    console.dir(req.body);
     post.body = req.body['body'];
     repo.persist(post);
+
+    res.redirect('/blog');
 });
 
 router.get('/:slug/delete', auth, async (req, res, next) => {
