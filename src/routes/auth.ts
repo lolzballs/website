@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import 'express-session';
+import * as bcrypt from 'bcrypt';
 
 const router: Router = Router();
 
@@ -7,8 +7,9 @@ router.get('/login', (req, res) => {
     res.render('login.html');
 });
 
-router.post('/login', (req, res) => {
-    if (req.body.username == process.env.AUTH_USER) {
+router.post('/login', async (req, res) => {
+    if (req.body.username == process.env.AUTH_USER
+        && await bcrypt.compare(req.body.password, process.env.AUTH_PASS)) {
         req.session['auth'] = true;
         res.redirect('/');
     } else {
