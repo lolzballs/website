@@ -96,6 +96,19 @@ html, body {
     margin: 1em 0;
 }
 
+#contact {
+    text-align: left;
+}
+#contact .container {
+    max-width: 300px;
+}
+#contact li {
+    margin: 0;
+}
+#contact li a {
+    text-decoration: none;
+}
+
 #blog {
     text-align: left;
 }
