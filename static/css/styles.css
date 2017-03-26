@@ -41,12 +41,13 @@ html, body {
     background-color: #fff;
     z-index: 98;
     padding-top: 6.5rem;
-    display: none;
+    transition-duration: 1s;
+    transform: translateY(-100%);
 }
 .navbar-mobile.open {
-    display: block;
+    transform: translateY(0%);
 }
-.navbar-mobile.navbar-link {
+.navbar-mobile .navbar-link {
     width: 100%;
 }
 .navbar-item {
