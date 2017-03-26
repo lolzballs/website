@@ -11,7 +11,7 @@ const app = express();
 exports.app = app;
 nunjucks.configure('templates', {
     autoescape: true,
-    express: app
+    express: app,
 });
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

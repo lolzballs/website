@@ -2,8 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 require("reflect-metadata");
+const fs = require("fs");
 const http = require("http");
 const app_1 = require("../app");
+if (process.env.PORT.substring(0, 1) == "/") {
+    fs.unlinkSync(process.env.PORT);
+}
 const port = normalizePort(process.env.PORT);
 app_1.app.set('port', port);
 const server = http.createServer(app_1.app);

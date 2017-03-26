@@ -1,8 +1,13 @@
 require('dotenv').config();
 
 import 'reflect-metadata';
+import * as fs from 'fs';
 import * as http from 'http';
 import {app} from '../app';
+
+if (process.env.PORT.substring(0, 1) == "/") {
+    fs.unlinkSync(process.env.PORT);
+}
 
 const port = normalizePort(process.env.PORT);
 app.set('port', port);
