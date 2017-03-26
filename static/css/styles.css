@@ -131,6 +131,13 @@ html, body {
     width: 100%;
 }
 
+#projects .final {
+    margin-bottom: 6rem;
+}
+#projects .final h2 {
+    font-family: Roboto, sans-serif;
+    font-weight: normal;
+}
 .project {
     overflow: hidden;
     border-radius: 4px;
@@ -139,17 +146,14 @@ html, body {
     margin: 0 auto 30px auto;
     box-shadow: 0 3px 6px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.15);
 }
-
 .project img {
     vertical-align: middle;
 }
-
 .project h1 {
     font-family: Oswald, sans-serif;
     font-weight: normal;
     margin-top: 2rem;
 }
-
 .project .eight {
     padding: 1rem;
 }
