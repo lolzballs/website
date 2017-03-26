@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block page %}
+<div class="section">
+    <div class="container">
+        {% for post in posts %}
+            <div class="preview">
+            <a href="/blog/{{ post.slug }}">
+                <div class="head">
+                    <h2>{{ post.title }}</h2>
+                    <span class="date">{{ post.created_at }}</span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="content">
+                    <p>
+                        {{ post.body | striptags | truncate(100, true, "...") }}
+                    </p>
+                </div>
+            </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock page %}
+

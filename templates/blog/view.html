@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block page %}
+<div class="section">
+    <div class="container" id="blog">
+        <div class="head">
+            <h1>{{ post.title }}</h1>
+            <span class="date">{{ post.created_at }}</span>
+        </div>
+        <div class="content">
+            {{ post.body | safe }} 
+        </div>
+    </div>
+</div>
+{% endblock page %}
+
