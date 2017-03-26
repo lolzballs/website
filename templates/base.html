@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title>Benjamin Cheng</title>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1">
 
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Oswald" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto:400,700|Oswald" rel="stylesheet">
 
         <link rel="stylesheet" href="/css/normalize.css">
         <link rel="stylesheet" href="/css/skeleton.css">
@@ -22,10 +23,28 @@
                     <li class="navbar-item"><a class="navbar-link" href="/projects">Projects</a></li>
                     <li class="navbar-item"><a class="navbar-link" href="/blog">Blog</a></li>
                 </ul>
+                <a href="#"><i class="material-icons" id="navbar-menu-btn">menu</i></a>
             </div>
         </nav>
+        <div class="navbar-mobile">
+            <div class="container">
+                <ul>
+                    <li class="navbar-item"><a class="navbar-link" href="/about">About</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/contact">Contact</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/projects">Projects</a></li>
+                    <li class="navbar-item"><a class="navbar-link" href="/blog">Blog</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="navbar-pad"></div>
         {% block page %}
         {% endblock page %}
     </body>
+    <script>
+        document.getElementById("navbar-menu-btn")
+                .addEventListener("click", function(e) {
+            let navbar = document.getElementsByClassName("navbar-mobile")[0];
+            navbar.classList.toggle("open");
+        });
+    </script>
 </html>
