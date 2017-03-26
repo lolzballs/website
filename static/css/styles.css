@@ -165,7 +165,8 @@ html, body {
 .project h1 {
     font-family: Oswald, sans-serif;
     font-weight: normal;
-    margin-top: 2rem;
+    font-size: 4rem;
+    margin-top: 1rem;
 }
 .project .eight {
     padding: 1rem;
