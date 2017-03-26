@@ -46,6 +46,9 @@ html, body {
 .navbar-mobile.open {
     display: block;
 }
+.navbar-mobile.navbar-link {
+    width: 100%;
+}
 .navbar-item {
     list-style: none;
     margin: 0;
