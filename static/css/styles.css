@@ -180,6 +180,10 @@ html, body {
 #blog .content {
     margin: 1em 0;
 }
+#blog .content img {
+    width: 100%;
+    height: auto;
+}
 
 #blog-form {
     height: calc(100% - 7rem);
