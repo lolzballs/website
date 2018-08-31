@@ -6,6 +6,10 @@ html, body {
     font-family: 'Roboto', sans-serif;
 }
 
+.desc {
+    color: #777;
+}
+
 .navbar-pad {
     height: 8rem;
 }
