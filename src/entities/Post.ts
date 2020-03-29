@@ -5,10 +5,10 @@ export default class Post {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("string")
+    @Column("varchar")
     title: string;
 
-    @Column({type: "string", unique: true})
+    @Column({type: "varchar", unique: true})
     slug: string;
 
     @Column("text")
