@@ -25,6 +25,6 @@ __decorate([
     typeorm_1.CreateDateColumn()
 ], Post.prototype, "created_at", void 0);
 Post = __decorate([
-    typeorm_1.Table("posts")
+    typeorm_1.Entity("posts")
 ], Post);
 exports.default = Post;

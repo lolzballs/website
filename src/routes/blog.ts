@@ -44,7 +44,7 @@ router.post("/", auth, async (req, res) => {
     }
     post.slug = post.slug + (id == 0 ? '' : id);
 
-    await db.getRepository(Post).persist(post);
+    await db.getRepository(Post).save(post);
     res.redirect("/blog/" + post.slug);
 });
 
@@ -86,7 +86,7 @@ router.post('/:slug', auth, async (req, res, next) => {
     }
 
     post.body = req.body['body'];
-    repo.persist(post);
+    repo.save(post);
 
     res.redirect('/blog');
 });

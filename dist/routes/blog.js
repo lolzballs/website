@@ -46,7 +46,7 @@ router.post("/", auth, (req, res) => __awaiter(this, void 0, void 0, function* (
         id++;
     }
     post.slug = post.slug + (id == 0 ? '' : id);
-    yield db.getRepository(Post_1.default).persist(post);
+    yield db.getRepository(Post_1.default).save(post);
     res.redirect("/blog/" + post.slug);
 }));
 router.get("/:slug", (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -79,7 +79,7 @@ router.post('/:slug', auth, (req, res, next) => __awaiter(this, void 0, void 0, 
         return;
     }
     post.body = req.body['body'];
-    repo.persist(post);
+    repo.save(post);
     res.redirect('/blog');
 }));
 router.get('/:slug/delete', auth, (req, res, next) => __awaiter(this, void 0, void 0, function* () {

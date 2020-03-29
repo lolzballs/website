@@ -3,7 +3,7 @@ import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 import * as session from 'express-session';
 import * as nunjucks from 'nunjucks';
-import {createConnection} from 'typeorm';
+import {createConnection, DatabaseType} from 'typeorm';
 import routes from './routes';
 
 const app: express.Application = express();
@@ -33,14 +33,12 @@ app.use((req, res) => {
 });
 
 createConnection({
-    driver: {
-        type: process.env.DB_TYPE,
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        username: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE
-    },
+    type: 'mariadb',
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT),
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
     entities: [
         __dirname + "/entities/*.js"
     ],
