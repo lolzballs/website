@@ -1,0 +1,2 @@
+ALTER TABLE posts
+    ADD draft BOOLEAN NOT NULL DEFAULT(false);

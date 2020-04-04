@@ -123,27 +123,35 @@ html, body {
     text-align: left;
 }
 .preview .head {
+    display: flex;
+    align-items: flex-end;
+
     padding: 1rem 0 0 0;
 }
 .preview .head h2 {
-    font-family: Roboto, sans-serif;
     font-size: 3rem;
     max-width: 80%;
     margin: 0;
+}
+.preview .head .draft {
+    color: #9E9E9E;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+.preview .head .date {
+    flex-grow: 1;
+    text-align: right;
 }
 .preview a {
     color: #222;
     text-decoration: none;
 }
-@media (min-width: 750px) {
+@media (max-width: 750px) {
     .preview .head {
-        padding: 1rem 0 3rem 0;
-    }
-    .preview .head h2 {
-        float: left;
+        flex-wrap: wrap;
     }
     .preview .head .date {
-        float: right;
+        text-align: left;
     }
 }
 .preview .head .date {

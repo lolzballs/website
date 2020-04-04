@@ -14,6 +14,9 @@ export default class Post {
     @Column("text")
     body: string;
 
+    @Column("boolean")
+    draft: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 }

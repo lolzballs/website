@@ -16,9 +16,14 @@ const auth  = (req, res, next) => {
 router.get("/", async (req, res) => {
     let db: Connection = req.app.get("database");
 
-    let posts = await db.getRepository(Post)
-            .createQueryBuilder("posts")
-            .orderBy("posts.id", "DESC")
+    let query = db.getRepository(Post)
+            .createQueryBuilder("post");
+    if (!req.session.auth) {
+        query = query.where('NOT post.draft');
+    }
+
+    let posts = await query
+            .orderBy("post.id", "DESC")
             .getMany();
 
     for (let post of posts) {
@@ -35,11 +40,10 @@ router.post("/", auth, async (req, res) => {
     post.title = req.body.title;
     post.slug = slug(post.title, {lower: true});
     post.body = req.body.body;
+    post.draft = true;
 
     let id = 0;
-    while (typeof(await repo
-                .findOne({ slug: post.slug + (id == 0 ? '' : id)}))
-                != 'undefined') {
+    while (await repo.findOne({ slug: post.slug + (id == 0 ? '' : id)}) !== undefined) {
         id++;
     }
     post.slug = post.slug + (id == 0 ? '' : id);
@@ -53,7 +57,7 @@ router.get("/:slug", async (req, res, next) => {
 
     let post = await db.getRepository(Post)
                         .findOne({ slug: req.params.slug });
-    if (typeof(post) == 'undefined') {
+    if (post === undefined) {
         next();
         return;
     }
@@ -67,7 +71,7 @@ router.get('/:slug/edit', auth, async (req, res, next) => {
 
     let post = await db.getRepository(Post)
                         .findOne({ slug: req.params.slug });
-    if (typeof(post) == 'undefined') {
+    if (post === undefined) {
         next();
         return;
     }
@@ -80,15 +84,31 @@ router.post('/:slug', auth, async (req, res, next) => {
     let repo = db.getRepository(Post);
 
     let post = await repo.findOne({ slug: req.params.slug });
-    if (typeof(post) == 'undefined') {
+    if (post == undefined) {
         next();
         return;
     }
 
     post.body = req.body['body'];
-    repo.save(post);
 
     res.redirect('/blog');
+    await repo.save(post);
+});
+
+router.get('/:slug/publish', auth, async (req, res, next) => {
+    let db: Connection = req.app.get("database");
+    let repo = db.getRepository(Post);
+
+    // TODO: Make this not slow
+    let post = await repo.findOne({ slug: req.params.slug });
+    if (post === undefined) {
+        next();
+        return;
+    }
+    post.draft = !post.draft;
+
+    res.redirect("/blog");
+    await repo.save(post);
 });
 
 router.get('/:slug/delete', auth, async (req, res, next) => {
@@ -97,7 +117,7 @@ router.get('/:slug/delete', auth, async (req, res, next) => {
 
     // TODO: Make this not slow
     let post = await repo.findOne({ slug: req.params.slug });
-    if (typeof(post) == 'undefined') {
+    if (post === undefined) {
         next();
         return;
     }
