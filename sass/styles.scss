@@ -76,7 +76,7 @@ main {
     }
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-device-width: 768px) {
     .index {
         flex-direction: column;
 
