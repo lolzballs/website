@@ -1,0 +1,11 @@
+<header>
+    <h1>Benjamin Cheng</h1>
+</header>
+
+<nav>
+    <a {% if current_path == "/" %}class="active"{% endif %} href="/">home</a>
+    <a {% if current_path == "/blog/" %}class="active"{% endif %} href="/blog">blog</a>
+    <a {% if current_path == "/links/" %}class="active"{% endif %} href="/links">links</a>
+    <a href="/atom.xml">rss</a>
+</nav>
+

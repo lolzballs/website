@@ -1,17 +1,38 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Benjamin Cheng</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
 
-{% block page %}
-<div class="section centered title">
-    <div class="container">
-        <h2>Hey there, I'm</h2>
-        <h1>Benjamin Cheng</h1>
-        <h3 class="desc">Engineering Science at the University of Toronto</h3>
-        
-        <div class="title-buttons">
-            <a class="button" href="about">About</a>
-            <a class="button" href="blog">Blog</a>
-        </div>
-    </div>
+<body class="index">
+<div>
+    {% include "base-content.html" %}
+
+    <main>
+        {% set page = get_page(path="about.md") %}
+        {{ page.content | safe }}
+    </main>
 </div>
-{% endblock page %}
 
+<aside class="contact">
+    <img src="/avatar.png" />
+
+    <dl>
+        <dt>email</dt>
+        <dd><a href="mailto:ben@bcheng.me">ben@bcheng.me</a></dd>
+
+        <dt>github</dt>
+        <dd><a href="https://github.com/lolzballs">lolzballs</a></dd>
+
+        <dt>linkedin</dt>
+        <dd><a href="https://linkedin.com/in/benchengcs">benchengcs</a></dd>
+
+        <dt>pgp</dt>
+        <dd><a href="/pgpkey.txt">4FE22E7528E97BD8</a></dd>
+    </dl>
+</aside>
+
+</body>
+</html>
