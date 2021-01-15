@@ -1,3 +1,6 @@
 +++
+title = "Misc. Links"
 +++
-Nothing here yet!
+
+Here are some random links you may find interesting:
+- [My Setup](@/pages/setup.md)
