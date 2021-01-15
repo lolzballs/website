@@ -1,5 +1,5 @@
 +++
-title = "Nvidia Compute+VFIO Setup"
+title = "Nvidia Compute + VFIO Setup"
 +++
 
 I recently got my hands on a Nvidia RTX 2070 Super. Despite being much more
