@@ -101,3 +101,13 @@ pre {
     padding: 0.5rem;
 }
 
+.footnote-definition {
+    &:first-of-type {
+        margin-top: 2rem;
+        border-top: black solid 1px;
+    }
+
+    p {
+        display: inline;
+    }
+}
